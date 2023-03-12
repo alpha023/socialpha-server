@@ -4,6 +4,8 @@ const multer=require('multer');
 const path=require('path');
 const app = express();
 
+const PORT=process.env.PORT || 8000;
+
 const {DB_URL}=require('./ServerConstants');
 
 
@@ -69,6 +71,6 @@ mongoose.connect(`${DB_URL}`, {
 
 
 
-app.listen(8000, () => {
+app.listen(PORT, () => {
   console.log("server Running on Port 800");
 });
