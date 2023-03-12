@@ -3,7 +3,7 @@ const User = require("../models/User");
 
 const CreatePost = async (req, res) => {
   try {
-    console.log(req.body);
+  
     const newPost = new Post(req.body);
     const savedPost = await newPost.save();
     res.status(200).json(savedPost);
@@ -44,7 +44,7 @@ const LikePost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     await post.updateOne({ $push: { likes: req.body.userId } });
-    console.log("post liked successfully");
+
     res.status(200).json("post liked successfully");
     // if (!post.likes.includes(req.body.userId)) {
     //   await post.updateOne({ $push: { likes: req.body.userId } });
@@ -64,7 +64,7 @@ const dislikePost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     await post.updateOne({ $pull: { likes: req.body.userId } });
-    console.log("post disliked successfully");
+
     res.status(200).json("post disliked successfully");
   } catch (err) {
     res.status(500).json(err)
@@ -107,7 +107,7 @@ const GetTimelinePosts = async (req, res) => {
     );
     res.status(200).json(userPosts.concat(...friendPosts));
   } catch (err) {
-    console.log(err);
+
     res.status(500).json(err);
   }
 };

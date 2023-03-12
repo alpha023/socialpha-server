@@ -27,12 +27,9 @@ const RegisterUser = async (req, res) => {
 //=======================
 const LoginUser = async (req, res) => {
   try {
-    console.log("0");
-    console.log(req.body.email);
-    console.log(req.body.password);
-    console.log("1");
+   
     const user = await User.findOne({ email: req.body.email });
-    console.log(!user);
+ 
     if(!user){
       return res.status(404).json("User Not Found");
     }
@@ -48,9 +45,9 @@ const LoginUser = async (req, res) => {
     }
     res.status(200).json(user);
   } catch (error) {
-    console.log("kya error hua");
+
     res.status(404).json({ msg: "Internal Error" });
-    console.log(error);
+
   }
 };
 
